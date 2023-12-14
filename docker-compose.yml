@@ -27,7 +27,7 @@ services:
 
   web_dev:
     build: ./web/dev
-    env_file: ./.envgst
+    env_file: ./.env
     environment:
       - PORT=3000
     volumes:
