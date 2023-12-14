@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.7'
 
 services:
 
@@ -31,7 +31,7 @@ services:
     environment:
       - PORT=3000
     volumes:
-      - $HOME/Boilerplate/BoilerplateWebServer:/home/web/srcs
+      - $HOME/Boilerplate/web_dev:/home/web/srcs
     ports:
       - "3000:3000" # for dev only
       - "5555:5555" # for dev only
@@ -43,7 +43,7 @@ services:
     environment:
       - PORT=8000
     volumes:
-      - $HOME/Boilerplate/BoilerplateWebServerProd:/home/web/srcs
+      - $HOME/Boilerplate/web_prod:/home/web/srcs
     ports:
       - "8000:8000" # for dev only
     restart: unless-stopped
