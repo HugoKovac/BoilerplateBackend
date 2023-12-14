@@ -6,6 +6,6 @@ USER web
 VOLUME [ "/home/web/srcs" ]
 ADD --chown=web:web ./entrypoint.sh /home/web/entrypoint.sh
 WORKDIR /home/web/
-RUN chown -R web /home/web/srcs/
 
+USER root
 ENTRYPOINT bash ./entrypoint.sh
