@@ -2,3 +2,4 @@
 database/base
 ssl
 nginx/data
+web/prod/entrypoint.sh
