@@ -30,7 +30,7 @@ services:
     env_file: ./.env
     environment:
       - PORT=3000
-      - BASE_URL=http://$HOSTNAME:$PORT
+      - BASE_URL=https://$HOSTNAME:$PORT
     volumes:
       - $HOME/Boilerplate/web_dev:/home/web/srcs
     # ports:
@@ -42,8 +42,7 @@ services:
     build: ./web/prod
     env_file: ./.env
     environment:
-      - PORT=80
-      - BASE_URL=http://$HOSTNAME:$PORT
+      - BASE_URL=https://$HOSTNAME
     volumes:
       - $HOME/Boilerplate/web_prod:/home/web/srcs
     # ports:
