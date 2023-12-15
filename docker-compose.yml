@@ -18,8 +18,8 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     env_file: ./.env
-    ports:
-      - "8080:8080"
+    # ports:
+    #   - "8080:8080"
     depends_on:
       - database
     restart: unless-stopped
@@ -33,9 +33,9 @@ services:
       - BASE_URL=http://$HOSTNAME:$PORT
     volumes:
       - $HOME/Boilerplate/web_dev:/home/web/srcs
-    ports:
-      - "3000:3000" # for dev only
-      - "5555:5555" # for dev only
+    # ports:
+    #   - "3000:3000" # for dev only
+    #   - "5555:5555" # for dev only
     restart: unless-stopped
 
   web_prod:
@@ -46,8 +46,8 @@ services:
       - BASE_URL=http://$HOSTNAME:$PORT
     volumes:
       - $HOME/Boilerplate/web_prod:/home/web/srcs
-    ports:
-      - "8000:8000" # for dev only
+    # ports:
+    #   - "8000:8000" # for dev only
     restart: unless-stopped
 
   nginx:
@@ -56,7 +56,7 @@ services:
     ports:
       - '80:80'
       - '81:81'
-      - '4433:443'
+      - '443:443'
     volumes:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
