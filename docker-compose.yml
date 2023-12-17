@@ -56,12 +56,20 @@ services:
       - '80:80'
       - '81:81'
       - '443:443'
-      - '3000:3000'
-      - '5555:5555'
-      - '8080:8080'
     volumes:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
+
+  nginx_dev:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '800:80'
+      - '811:81'
+      - '4433:443'
+    volumes:
+      - ./nginx_dev/data:/data
+      - ./nginx_dev/letsencrypt:/etc/letsencrypt
 
 
 networks:
