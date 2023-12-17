@@ -66,7 +66,9 @@ services:
     ports:
       - '800:80'
       - '811:81'
-      - '4433:443'
+      - '3000:443'
+      - '5555:5555'
+      - '8080:8080'
     volumes:
       - ./nginx_dev/data:/data
       - ./nginx_dev/letsencrypt:/etc/letsencrypt
