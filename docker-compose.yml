@@ -29,8 +29,7 @@ services:
     build: ./web/dev
     env_file: ./.env
     environment:
-      - PORT=3000
-      - BASE_URL=https://$HOSTNAME:$PORT
+      - BASE_URL=https://$HOSTNAME
     volumes:
       - $HOME/Boilerplate/web_dev:/home/web/srcs
     # ports:
@@ -60,18 +59,18 @@ services:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
 
-  nginx_dev:
-    image: 'jc21/nginx-proxy-manager:latest'
-    restart: unless-stopped
-    ports:
-      - '800:80'
-      - '811:81'
-      - '3000:443'
-      - '5555:5555'
-      - '8080:8080'
-    volumes:
-      - ./nginx_dev/data:/data
-      - ./nginx_dev/letsencrypt:/etc/letsencrypt
+  # nginx_dev:
+  #   image: 'jc21/nginx-proxy-manager:latest'
+  #   restart: unless-stopped
+  #   ports:
+  #     - '800:80'
+  #     - '811:81'
+  #     - '3000:443'
+  #     - '5555:5555'
+  #     - '8080:8080'
+  #   volumes:
+  #     - ./nginx_dev/data:/data
+  #     - ./nginx_dev/letsencrypt:/etc/letsencrypt
 
 
 networks:
