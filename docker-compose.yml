@@ -29,19 +29,21 @@ services:
     build: ./web/dev
     env_file: ./.env
     environment:
-      - BASE_URL=https://$HOSTNAME
+      - BASE_URL=http://$HOSTNAME:3000
+      - DEV=true
     volumes:
       - $HOME/Boilerplate/web_dev:/home/web/srcs
     ports:
       - "3000:3000" # for dev only
-    #   - "5555:5555" # for dev only
+      - "5555:5555" # for dev only
     restart: unless-stopped
 
   web_prod:
     build: ./web/prod
     env_file: ./.env
     environment:
-      - BASE_URL=http://$HOSTNAME:3000
+      - BASE_URL=https://$HOSTNAME
+      - DEV=false
     volumes:
       - $HOME/Boilerplate/web_prod:/home/web/srcs
     # ports:
