@@ -32,8 +32,8 @@ services:
       - BASE_URL=https://$HOSTNAME
     volumes:
       - $HOME/Boilerplate/web_dev:/home/web/srcs
-    # ports:
-    #   - "3000:3000" # for dev only
+    ports:
+      - "3000:3000" # for dev only
     #   - "5555:5555" # for dev only
     restart: unless-stopped
 
@@ -41,7 +41,7 @@ services:
     build: ./web/prod
     env_file: ./.env
     environment:
-      - BASE_URL=https://$HOSTNAME
+      - BASE_URL=http://$HOSTNAME:3000
     volumes:
       - $HOME/Boilerplate/web_prod:/home/web/srcs
     # ports:
@@ -58,19 +58,6 @@ services:
     volumes:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
-
-  # nginx_dev:
-  #   image: 'jc21/nginx-proxy-manager:latest'
-  #   restart: unless-stopped
-  #   ports:
-  #     - '800:80'
-  #     - '811:81'
-  #     - '3000:443'
-  #     - '5555:5555'
-  #     - '8080:8080'
-  #   volumes:
-  #     - ./nginx_dev/data:/data
-  #     - ./nginx_dev/letsencrypt:/etc/letsencrypt
 
 
 networks:
