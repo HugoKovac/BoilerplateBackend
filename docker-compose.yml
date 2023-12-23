@@ -4,6 +4,7 @@ services:
 
   database:
     build: ./database
+    container_name: database
     env_file: ./.env
     environment:
       - POSTGRES_USER=postgres
@@ -21,6 +22,7 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     env_file: ./.env
+    container_name: pgadmin
     ports:
       - "8080:8080"
     cap_add:
@@ -32,6 +34,7 @@ services:
 
   web_dev:
     build: ./web/dev
+    container_name: web_dev
     env_file: ./.env
     environment:
       - BASE_URL=http://$HOSTNAME:3000
@@ -48,6 +51,7 @@ services:
   web_prod:
     build: ./web/prod
     env_file: ./.env
+    container_name: web_prod
     environment:
       - BASE_URL=https://$HOSTNAME
       - DEV=false
@@ -61,6 +65,7 @@ services:
 
   nginx:
     image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx
     restart: unless-stopped
     ports:
       - '80:80'
