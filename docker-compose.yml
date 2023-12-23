@@ -43,7 +43,7 @@ services:
       - $HOME/Boilerplate/web_dev:/home/web/srcs
     ports:
       - "3000:3000" # for dev only
-      # - "5555:5555" # for dev only
+      - "5555:5555" # for dev only
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
