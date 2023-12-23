@@ -7,14 +7,15 @@ services:
     env_file: ./.env
     environment:
       - POSTGRES_USER=postgres
-      # - POSTGRES_AUTH_METHOD=trust
     volumes:
       - ./database/base:/var/lib/postgresql/data
 
     restart: unless-stopped
 
   pgadmin:
-    build: ./pgadmin
+    build:
+      context: .
+      dockerfile: ./pgadmin/Dockerfile
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     env_file: ./.env
@@ -35,7 +36,7 @@ services:
       - $HOME/Boilerplate/web_dev:/home/web/srcs
     ports:
       - "3000:3000" # for dev only
-      - "5555:5555" # for dev only
+      # - "5555:5555" # for dev only
     restart: unless-stopped
 
   web_prod:
