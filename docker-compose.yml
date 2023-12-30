@@ -40,7 +40,7 @@ services:
       - BASE_URL=http://$HOSTNAME:3000
       - DEV=true
     volumes:
-      - $HOME/Boilerplate/web_dev:/home/web/srcs
+      - $PROJECT_PATH/web_dev:/home/web/srcs
     ports:
       - "3000:3000" # for dev only
       - "5555:5555" # for dev only
@@ -56,7 +56,7 @@ services:
       - BASE_URL=https://$HOSTNAME
       - DEV=false
     volumes:
-      - $HOME/Boilerplate/web_prod:/home/web/srcs
+      - $PROJECT_PATH/web_prod:/home/web/srcs
     # ports:
     #   - "8000:8000" # for dev only
     cap_add:
