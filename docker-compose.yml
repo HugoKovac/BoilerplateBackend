@@ -15,21 +15,21 @@ services:
 
     restart: unless-stopped
 
-  pgadmin:
-    build:
-      context: .
-      dockerfile: ./pgadmin/Dockerfile
-    volumes:
-      - pgadmin-data:/var/lib/pgadmin
-    env_file: ./.env
-    container_name: pgadmin
-    ports:
-      - "8080:8080"
-    cap_add:
-      - NET_ADMIN
-    depends_on:
-      - database
-    restart: unless-stopped
+  # pgadmin:
+  #   build:
+  #     context: .
+  #     dockerfile: ./pgadmin/Dockerfile
+  #   volumes:
+  #     - pgadmin-data:/var/lib/pgadmin
+  #   env_file: ./.env
+  #   container_name: pgadmin
+  #   ports:
+  #     - "8080:8080"
+  #   cap_add:
+  #     - NET_ADMIN
+  #   depends_on:
+  #     - database
+  #   restart: unless-stopped
     
 
   web_dev:
@@ -48,34 +48,34 @@ services:
       - NET_ADMIN
     restart: unless-stopped
 
-  web_prod:
-    build: ./web/prod
-    env_file: ./.env
-    container_name: web_prod
-    environment:
-      - BASE_URL=https://$HOSTNAME
-      - DEV=false
-    volumes:
-      - $PROJECT_PATH/web_prod:/home/web/srcs
-    # ports:
-    #   - "8000:8000" # for dev only
-    cap_add:
-      - NET_ADMIN
-    restart: unless-stopped
+  # web_prod:
+  #   build: ./web/prod
+  #   env_file: ./.env
+  #   container_name: web_prod
+  #   environment:
+  #     - BASE_URL=https://$HOSTNAME
+  #     - DEV=false
+  #   volumes:
+  #     - $PROJECT_PATH/web_prod:/home/web/srcs
+  #   # ports:
+  #   #   - "8000:8000" # for dev only
+  #   cap_add:
+  #     - NET_ADMIN
+  #   restart: unless-stopped
 
-  nginx:
-    image: 'jc21/nginx-proxy-manager:latest'
-    container_name: nginx
-    restart: unless-stopped
-    ports:
-      - '80:80'
-      - '81:81'
-      - '443:443'
-    cap_add:
-      - NET_ADMIN
-    volumes:
-      - ./nginx/data:/data
-      - ./nginx/letsencrypt:/etc/letsencrypt
+  # nginx:
+  #   image: 'jc21/nginx-proxy-manager:latest'
+  #   container_name: nginx
+  #   restart: unless-stopped
+  #   ports:
+  #     - '80:80'
+  #     - '81:81'
+  #     - '443:443'
+  #   cap_add:
+  #     - NET_ADMIN
+  #   volumes:
+  #     - ./nginx/data:/data
+  #     - ./nginx/letsencrypt:/etc/letsencrypt
 
 
 networks:
